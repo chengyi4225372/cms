@@ -20,16 +20,4 @@ ThinkPHP 企业网站 CMS
 <br><br>
 
 
-1、数据库文件
-导入 \Sql\demo.sql 即可
-<br><br>
 
-
-2、前台访问 
-http://项目地址
-<br><br>
-
-
-3、后台访问 
-http://项目地址/Admin//Login/index
-帐号：admin  密码：123456
