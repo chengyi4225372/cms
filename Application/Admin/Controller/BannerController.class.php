@@ -15,4 +15,13 @@ class BannerController extends BaseController
     public function index(){
         $this->display();
     }
+
+
+    public function create(){
+        $this->display();
+    }
+
+    public  function del(){
+        $this->ajaxReturn();
+    }
 }
