@@ -36,7 +36,6 @@ class UserModel extends Model
         if ($flag) {
 
             return [
-
                 'data' => $param['username'] . '已经存在了',
 
                 'msg' => $model->getLastSql(),
