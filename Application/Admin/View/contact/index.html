@@ -74,14 +74,6 @@
 
         $(".j-dataTables").dataTable();
 
-        // 导出
-        $('.export-excel-btn').on('click',function(){
-
-            window.location.href = '{:U("News/exportCSV")}';
-
-        })
-
-
         // 删除
         $('.j-del').on('click',function(){
 
@@ -107,7 +99,7 @@
 
                                 alert("删除成功！")
 
-                                window.location.href = '{:U("News/index")}';
+                                window.location.href = '{:U("contact/index")}';
 
                             } else {
 
