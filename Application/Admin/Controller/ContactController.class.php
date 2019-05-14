@@ -37,9 +37,9 @@ class ContactController extends BaseController
 
                 $map['id'] = $param['id'];
 
-                $cases_detail = D('contact')->where($map)->order('id desc')->find();
+                $contact_detail = D('contact')->where($map)->order('id desc')->find();
 
-                $this->assign('cases_detail', $cases_detail);
+                $this->assign('contact_detail', $contact_detail);
 
             }
 

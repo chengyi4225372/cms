@@ -433,30 +433,32 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <h2 style="text-align: center;">Please drop us a line, we'd love to hear from you!</h2>
-                                        <form method="post" action="/contact#contact_form" id="contact_form" accept-charset="UTF-8" class="contact-form"><input type="hidden" name="form_type" value="contact" /><input type="hidden" name="utf8" value="✓" /><fieldset class="form-horizontal">
+                                        <form method="post" action="{:U('index/contact/contact_form')}" id="contact_form" accept-charset="UTF-8" class="contact-form">
+                                            <input type="hidden" name="form_type" value="contact" />
+                                            <fieldset class="form-horizontal">
                                             <h3>Contact Form</h3>
                                             <div class="form-group required">
                                                 <label class="col-sm-2 control-label" for="name">Your Name</label>
                                                 <div class="col-sm-10">
-                                                    <input required="required" type="text" id="name" class="form-control" value="" name="contact[name]" />
+                                                    <input required="required" type="text" id="name" class="form-control" value="" name="name" />
                                                 </div>
                                             </div>
                                             <div class="form-group required">
                                                 <label class="col-sm-2 control-label" for="email">E-Mail Address</label>
                                                 <div class="col-sm-10">
-                                                    <input required="required" type="email" id="email" class="form-control" value="" name="contact[email]" />
+                                                    <input  type="email" id="email" class="form-control" value="" name="email" />
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label" for="phone">Phone Number</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" id="phone" class="form-control" value="" name="contact[phone]" />
+                                                    <input type="text" id="phone" class="form-control" value="" required="required" name="phone" />
                                                 </div>
                                             </div>
                                             <div class="form-group required">
                                                 <label class="col-sm-2 control-label" for="message">Message</label>
                                                 <div class="col-sm-10">
-                                                    <textarea required="required" id="message" rows="10" class="form-control" name="contact[body]"></textarea>
+                                                    <textarea required="required" id="message" rows="10" class="form-control" name="body"></textarea>
                                                 </div>
                                             </div>
                                         </fieldset>
@@ -464,7 +466,9 @@
                                                 <div class="pull-right">
                                                     <input class="btn btn-primary" type="submit" value="Submit" />
                                                 </div>
-                                            </div></form></div>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div></div></div>
@@ -535,7 +539,11 @@
 
     </div>
 
-</div><script src="//cdn.shopify.com/s/javascripts/currencies.js" defer="defer"></script><script src="//cdn.shopify.com/s/files/1/0033/8519/6642/t/28/assets/rt.application.js?18330" defer="defer"></script><script src="//cdn.shopify.com/s/files/1/0033/8519/6642/t/28/assets/theme.js?18330" defer="defer"></script><!-- // FRESHDESK Widget code here for all pages -->
+</div>
+    <script src="//cdn.shopify.com/s/javascripts/currencies.js" defer="defer"></script>
+    <script src="//cdn.shopify.com/s/files/1/0033/8519/6642/t/28/assets/rt.application.js?18330" defer="defer"></script>
+    <script src="//cdn.shopify.com/s/files/1/0033/8519/6642/t/28/assets/theme.js?18330" defer="defer"></script>
+    <!-- // FRESHDESK Widget code here for all pages -->
 <script type="text/javascript" src="http://assets.freshdesk.com/widget/freshwidget.js"></script>
 <script type="text/javascript">
     FreshWidget.init("", {"queryString": "&widgetType=popup", "utf8": "✓", "widgetType": "popup", "buttonType": "text",

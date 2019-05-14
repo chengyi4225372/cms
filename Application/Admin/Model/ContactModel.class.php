@@ -15,7 +15,7 @@ class ContactModel extends Model
 
     public function getlist(){
         $model =M($this->table);
-        $list  =$model ->order('id desc')->limit($limit)->select();
+        $list  =$model ->order('id desc')->limit(10)->select();
         return $list;
     }
 
@@ -32,8 +32,10 @@ class ContactModel extends Model
         $doMod = $model
             ->where(array('id' => $param['id']))
             ->save(array(
-                'url' => $param['url'],
-                'img' => $param['img'],
+                'names' => $param['names'],
+                'email' => $param['email'],
+                'tel' => $param['tel'],
+                'content' => $param['content'],
             ));
 
         $res = $doMod ? array('msg' => 'success') : array('msg' => 'failed');
