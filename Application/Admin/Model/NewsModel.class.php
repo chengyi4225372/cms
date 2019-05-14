@@ -17,7 +17,7 @@ class NewsModel extends Model
 
 		$map['is_deleted'] = 0;
 
-        $list = $model->where($map)->order('id desc')->limit($limit)->select();
+        $list = $model->where($map)->order('create_time asc ,id desc')->select();
         
         return $list;
 
@@ -59,9 +59,8 @@ class NewsModel extends Model
 
             'create_time' => date('Y-m-d H:i:s'),
 
-            'type' => $param['type'],
 
-            'type_id' => $param['type_id'],
+            'img' => $param['img'],
 
             'content' => $param['content'],
 
@@ -120,9 +119,8 @@ class NewsModel extends Model
 
             'desc' => $param['desc'],
 
-            'type' => $param['type'],
 
-            'type_id' => $param['type_id'],
+            'img' => $param['img'],
 
             'content' => $param['content'],
 
