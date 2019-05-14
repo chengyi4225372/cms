@@ -17,4 +17,9 @@ class VapoController extends  BaseController
         $this->display();
     }
 
+
+    public function detail(){
+        $this->display();
+    }
+
 }
