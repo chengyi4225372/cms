@@ -40,14 +40,12 @@
                                 </div>
                             </div>
 
-
                             <div class="am-form-group">
                                 <label for="url" class="am-u-sm-3 am-form-label">跳转地址 <span class="tpl-form-line-small-title">url</span></label>
                                 <div class="am-u-sm-9">
-                                    <input type="text"  class="tpl-form-input" id="url"  value="" style="width:300px; background: #eee;">
+                                    <input type="text"  class="tpl-form-input" id="url"  value="{$cases_detail.url}" style="width:300px; background: #eee;">
                                 </div>
                             </div>
-
 
 
 
@@ -89,13 +87,8 @@
 
         if($cases_detail) {
 
-            if($cases_detail.is_show == 0) {
 
-                $("#is_show").attr('checked',false)
-
-            }
-
-            _this._img_path = $cases_detail.cover;
+            _this._img_path = $cases_detail.img;
 
             $('#cover-img').attr('src','/Uploads/'+_this._img_path)
 
@@ -105,22 +98,12 @@
         // 提交
         $('.j-submit').on('click',function(){
 
-            var is_show = $('.tpl-switch-btn').is(":checked") ? 1 : 0;
-
-            if(!$('#title').val()){
-
-                alert('标题不能为空！')
-
-                return false
-
-            }
-
             var param = {
 
 
                 img : _this._img_path,
 
-                url : $("#url").val();,
+                url : $("#url").val(),
 
 
             }
@@ -159,7 +142,7 @@
 
                         alert("操作成功！")
 
-                        window.location.href = '{:U("Cases/index")}';
+                        window.location.href = '{:U("banner/index")}';
 
                     } else {
 

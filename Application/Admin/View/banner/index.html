@@ -26,7 +26,6 @@
                             <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black j-dataTables" id="example-r">
                                 <thead>
                                 <tr>
-                                    <th>ID</th>
                                     <th>轮播图</th>
                                     <th>url跳转地址</th>
                                     <th>发布时间</th>
@@ -36,11 +35,11 @@
                                 <tbody>
                                 <volist name="list" id="vo"  >
                                     <tr class="gradeX">
-                                        <td class="am-text-middle">{$vo.desc|mb_substr=0,10,'utf-8'}</td>
-                                        <td>
-                                            <img src="/Uploads/{$vo.cover}" class="tpl-table-line-img" alt="">
+                                        <!--<td class="am-text-middle">{$vo.desc|mb_substr=0,10,'utf-8'}</td>-->
+                                        <td class="sorting_1">
+                                            <a href="/Uploads/{$vo.img}"><img src="/Uploads/{$vo.img}" class="tpl-table-line-img" alt=""></a>
                                         </td>
-                                        <td class="am-text-middle">{$vo.title|mb_substr=0,10,'utf-8'}</td>
+                                        <td class="am-text-middle">{$vo.url|default=''}</td>
                                         <td class="am-text-middle">{$vo.create_time}</td>
                                         <td class="am-text-middle">
                                             <div class="tpl-table-black-operation">
