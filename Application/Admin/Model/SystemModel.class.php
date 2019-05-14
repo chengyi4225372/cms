@@ -35,31 +35,22 @@ class SystemModel extends Model
 
         $doMod = $model
 
-            ->where(['id' => 1])
+            ->where(array('id' => 1))
 
-        	->save([
-
+        	->save(array(
             'title' => $param['title'],
-
             'keyword' => $param['keyword'],
-
             'desc' => $param['desc'],
-
             'footer_js' => $param['footer_js']
+            ));
 
-        ]);
+        $res = $doMod ? array('msg' => 'success') : array('msg' => 'failed');
 
-        $res = $doMod ? ['msg' => 'success'] : ['msg' => 'failed'];
-
-        return [
-
+        return array(
             'data' => $res['msg'],
-
             'msg' => $model->getLastSql(),
-
             'status' => $doMod ? 1 : 0,
-
-        ];
+        );
 
     }
 

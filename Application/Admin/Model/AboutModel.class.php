@@ -35,17 +35,17 @@ class AboutModel extends Model
 
         $doMod = $model
 
-            ->where(['id' => 1])
+            ->where(array('id' => 1))
 
-        	->save([
+        	->save(array(
 
             'content' => $param['content']
 
-        ]);
+            ));
 
-        $res = $doMod ? ['msg' => 'success'] : ['msg' => 'failed'];
+        $res = $doMod ? array('msg' => 'success') : array('msg' => 'failed');
 
-        return [
+        return array(
 
             'data' => $res['msg'],
 
@@ -53,7 +53,7 @@ class AboutModel extends Model
 
             'status' => $doMod ? 1 : 0,
 
-        ];
+        );
 
     }
 

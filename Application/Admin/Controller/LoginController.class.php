@@ -40,7 +40,7 @@ class LoginController extends Controller
 
             session('username' , $list['username']);  //把用户名存入session
 
-            $result = [
+            $result = array(
 
                 'data' => '登陆成功',
 
@@ -48,19 +48,15 @@ class LoginController extends Controller
 
                 'status' => 1
 
-            ];
+            );
 
         } else {
 
-        	$result = [
-
+        	$result = array(
                 'data' => '登陆失败',
-
                 'msg' => $model->getLastSql(),
-
                 'status' => 0
-
-            ];
+            );
 
         }
 
@@ -77,7 +73,7 @@ class LoginController extends Controller
 
 	 	 session('username' , null);       
 
-	 	 $this->ajaxReturn(['status' => 1]);
+	 	 $this->ajaxReturn(array('status' => 1));
 
 	 }
 	 

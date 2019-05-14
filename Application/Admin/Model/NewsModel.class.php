@@ -32,45 +32,31 @@ class NewsModel extends Model
     	$model = M('news');
 
     	// 判断是否存在
-    	$flag = $model->where(['title' => $param['title'], 'is_deleted' => 0])->find();
+    	$flag = $model->where(array('title' => $param['title'], 'is_deleted' => 0))->find();
 
         if ($flag) {
-
-            return [
-
+            return array(
                 'data' => $param['title'] . '已经存在了',
-
                 'msg' => $model->getLastSql(),
-
                 'status' => 0,
-
-            ];
-
+            );
         }
 
 
         $doAdd = false;
 
-        $doAdd = $model->add([
-
+        $doAdd = $model->add(array(
             'title' => $param['title'],
-
             'desc' => $param['desc'],
-
             'create_time' => date('Y-m-d H:i:s'),
-
-
             'img' => $param['img'],
-
             'content' => $param['content'],
-
             'is_show' => $param['is_show'],
+        ));
 
-        ]);
+        $res = $doAdd ? array('msg' => 'success') : array('msg' => 'failed');
 
-        $res = $doAdd ? ['msg' => 'success'] : ['msg' => 'failed'];
-
-        return [
+        return array(
 
             'data' => $res['msg'],
 
@@ -78,7 +64,7 @@ class NewsModel extends Model
 
             'status' => $doAdd ? 1 : 0,
 
-        ];
+        );
 
     }
 
@@ -91,46 +77,33 @@ class NewsModel extends Model
     	$model = M('news');
 
     	// 判断是否存在
-    	$flag = $model->where(['title' => $param['title'], 'is_deleted' => 0, 'id' => ['neq', $param['id']]])->find();
+    	$flag = $model->where(array('title' => $param['title'], 'is_deleted' => 0, 'id' => array('neq', $param['id'])))->find();
 
         if ($flag) {
-
-            return [
-
+            return array(
                 'data' => $param['title'] . '已经存在了',
-
                 'msg' => $model->getLastSql(),
-
                 'status' => 0,
-
-            ];
-
+            );
         }
 
         $doMod = false;
 
         $doMod = $model
 
-            ->where(['id' => $param['id']])
+            ->where(array('id' => $param['id']))
 
-        	->save([
-
+        	->save(array(
             'title' => $param['title'],
-
             'desc' => $param['desc'],
-
-
             'img' => $param['img'],
-
             'content' => $param['content'],
-
             'is_show' => $param['is_show'],
+            ));
 
-        ]);
+        $res = $doMod ? array('msg' => 'success') : array('msg' => 'failed');
 
-        $res = $doMod ? ['msg' => 'success'] : ['msg' => 'failed'];
-
-        return [
+        return array(
 
             'data' => $res['msg'],
 
@@ -138,7 +111,7 @@ class NewsModel extends Model
 
             'status' => $doMod ? 1 : 0,
 
-        ];
+        );
 
     }
 
@@ -152,19 +125,15 @@ class NewsModel extends Model
 
  		$doDel = false;
 
-        $doDel = $model->where(['id' => ['in', $param['id']]])->save(['is_deleted' => 1]);
+        $doDel = $model->where(array('id' => array('in', $param['id'])))->save(array('is_deleted' => 1));
 
-        $res = $doDel ? ['msg' => $doDel . ' deleted'] : ['msg' => 'no delete'];
+        $res = $doDel ? array('msg' => $doDel . ' deleted') : array('msg' => 'no delete');
 
-        return [
-
+        return array(
             'data' => $res['msg'],
-
             'msg' => $model->getLastSql(),
-
             'status' => $doDel ? 1 : 0,
-
-        ];
+        );
 
     }
       

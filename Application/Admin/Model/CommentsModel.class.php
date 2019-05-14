@@ -32,19 +32,15 @@ class CommentsModel extends Model
 
         $doDel = false;
 
-        $doDel = $model->where(['id' => ['in', $param['id']]])->save(['is_deleted' => 1]);
+        $doDel = $model->where(array('id' => array('in', $param['id'])))->save(array('is_deleted' => 1));
 
-        $res = $doDel ? ['msg' => $doDel . ' deleted'] : ['msg' => 'no delete'];
+        $res = $doDel ? array('msg' => $doDel . ' deleted') : array('msg' => 'no delete');
 
-        return [
-
+        return array(
             'data' => $res['msg'],
-
             'msg' => $model->getLastSql(),
-
             'status' => $doDel ? 1 : 0,
-
-        ];
+        );
 
     }
       

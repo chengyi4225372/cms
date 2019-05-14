@@ -2,24 +2,24 @@
 /**
  * Created by PhpStorm.
  * User: Administrator
- * Date: 2019/5/13
- * Time: 17:29
+ * Date: 2019/5/14
+ * Time: 11:50
  */
-
 namespace Admin\Controller;
 
 use Think\Controller;
 
-class BannerController extends BaseController
+class ContactController extends BaseController
 {
-    //显示列表
     public function index(){
-        $list = D('Banner')->getlist();
+        $list = D('Contact')->getlist();
         $this->assign('list',$list);
         $this->display();
     }
 
-
+    /**
+     * 修改
+    */
     public function create()
     {
 
@@ -27,17 +27,17 @@ class BannerController extends BaseController
 
         if (empty($do)) {
 
-            $title = "添加轮播图";
+            $title = "添加";
 
             $param = I();
 
             if ($param){
 
-                $title = "修改轮播图";
+                $title = "修改";
 
                 $map['id'] = $param['id'];
 
-                $cases_detail = D('banner')->where($map)->order('id desc')->find();
+                $cases_detail = D('contact')->where($map)->order('id desc')->find();
 
                 $this->assign('cases_detail', $cases_detail);
 
@@ -51,7 +51,7 @@ class BannerController extends BaseController
 
             $param = I();
 
-            $result = D('banner')->Create($param);
+            $result = D('contact')->Create($param);
 
             $this->ajaxReturn($result);
 
@@ -59,7 +59,7 @@ class BannerController extends BaseController
 
             $param = I();
 
-            $result = D('Banner')->Edit($param);
+            $result = D('contact')->Edit($param);
 
             $this->ajaxReturn($result);
 
@@ -67,18 +67,15 @@ class BannerController extends BaseController
 
     }
 
-    /**
-     * 删除案例
-     */
-    public function del()
-    {
+    /*删除
+     * */
 
+    public function del(){
         $param = I();
 
-        $result = D('Banner')->Del($param);
+        $result = D('contact')->Del($param);
 
         $this->ajaxReturn($result);
-
     }
 
 }
