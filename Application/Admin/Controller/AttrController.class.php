@@ -10,7 +10,7 @@
 namespace  Admin\Controller;
 use Think\Controller;
 
-class VapoController extends  BaseController
+class AttrController extends  BaseController
 {
    public function  index(){
       $this->display();
