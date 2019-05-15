@@ -13,18 +13,16 @@ use Think\Controller;
 class CatesController extends BaseController
 {
     //所有顶级分类
-   public function index(){
+    public function index(){
        $one = D("cates")->getone();
        $this->assign('one',$one);
        $this->display();
    }
-
     /**
      * 新增 一级分类
      */
     public function create()
     {
-
         $do = I('do');
 
         if (empty($do)) {
@@ -61,7 +59,7 @@ class CatesController extends BaseController
 
             $param = I();
 
-            $result = D('cates')->Edit($param);
+            $result = D('cates')->Edit_one($param);
 
             $this->ajaxReturn($result);
 
@@ -69,20 +67,34 @@ class CatesController extends BaseController
 
     }
 
-
     /**
      * 删除一级分类
      */
-    public function del()
+    public function del_one()
     {
 
         $param = I();
 
-        $result = D('models')->Del($param);
+        $result = D('cates')->del_one($param);
 
         $this->ajaxReturn($result);
 
     }
 
+
+   //显示当前分类的下级分类
+    public function  index_two(){
+          $id = I('get.pid');
+          $two= D("cates")->gettwo($id);
+          $title = D("cates")->field('cates_one')->where(array('id'=>$id,'pid'=>0))->find();
+          $this->assign('two',$two);
+          $this->assign('title',$title);
+          $this->display();
+    }
+
+    //添加二级分类
+    public function create_two(){
+         $this->display();
+    }
 
 }

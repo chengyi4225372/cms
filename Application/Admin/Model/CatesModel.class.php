@@ -13,7 +13,7 @@ class CatesModel extends Model
 {
     protected $table = 'cates';
 
-
+    //顶级
     public function getone(){
         $model = M($this->table);
         $list = $model->where(array('pid'=>0))->order('id desc ')->select();
@@ -21,12 +21,14 @@ class CatesModel extends Model
     }
 
     //添加一级
-    public function Create_one($param)
+    public function Create($param)
     {
 
         $model = M($this->table);
+
+
         // 判断是否存在
-        $flag = $model->where(array('cates_one' => $param['cates_one']))->find();
+        $flag = $model->where(array('cates_one' => $param['title']))->find();
         if ($flag) {
             return array(
                 'data' => $param['cates_one'] . '已经存在了',
@@ -49,11 +51,20 @@ class CatesModel extends Model
     }
 
     //删除一级
-   public  function  del_one($param){
+    public  function  del_one($param){
        $model = M($this->table);
+
+       $flag = $model->where(array('pid'=>$param['id']))->find();
+       if ($flag) {
+           return array(
+               'data' => '顶级分类存在下级分类，不能删除！',
+               'msg' => $model->getLastSql(),
+               'status' => 0,
+           );
+       }
+
        $doDel = false;
-       $flag = $model->where(array('cates_one' => $param['cates_one'],''))->find();
-       $doDel = $model->where(array('id' => array('in', $param['id'])))->save(array('is_deleted' => 1));
+       $doDel = $model->where(array('id' => array('in', $param['id'])))->delete();
 
        $res = $doDel ? array('msg' => $doDel . ' deleted') : array('msg' => 'no delete');
 
@@ -63,6 +74,51 @@ class CatesModel extends Model
            'status' => $doDel ? 1 : 0,
        );
    }
+
+    /**
+     * 修改 顶级
+     */
+    public function Edit_one($param)
+    {
+
+        $model = M($this->table);
+
+        // 判断是否存在
+        $flag = $model->where(array('cates_one' => $param['title'], 'id' => array('neq', $param['id'])))->find();
+
+        if ($flag) {
+            return array(
+                'data' => $param['title'] . '已经存在了',
+                'msg' => $model->getLastSql(),
+                'status' => 0,
+            );
+
+        }
+        $doMod = false;
+        $doMod = $model
+
+            ->where(array('id' => $param['id']))
+
+            ->save(array(
+                'cates_one' => $param['title'],
+            ));
+
+        $res = $doMod ? array('msg' => 'success'): array('msg' => 'failed');
+        return array(
+            'data' => $res['msg'],
+            'msg' => $model->getLastSql(),
+            'status' => $doMod ? 1 : 0,
+        );
+    }
+
+
+    //当前分类的下级分类
+    public function gettwo($pid){
+        $model = M($this->table);
+        $two =$model->where(array('pid'=>$pid))->select();
+        return $two;
+    }
+
 
 
 }
