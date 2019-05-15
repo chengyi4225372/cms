@@ -33,14 +33,14 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <volist name="one" id="vo"  >
+                                <volist name="two" id="vo"  >
                                     <tr class="gradeX">
                                         <td>{$vo.id}</td>
-                                        <td>{$vo.cates_one}</td>
+                                        <td>{$vo.cates_two}</td>
                                         <td>{$vo.create_time}</td>
                                         <td>
                                             <div class="tpl-table-black-operation">
-                                                <a href="/Admin/cates/create_two?id={$vo.id}">
+                                                <a href="/Admin/cates/edit_two?id={$vo.id}">
                                                     <i class="am-icon-pencil"></i> 编辑
                                                 </a>
                                                 <a href="javascript:;" class="tpl-table-black-operation-del j-del" data-id="{$vo.id}">

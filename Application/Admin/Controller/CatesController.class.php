@@ -94,7 +94,41 @@ class CatesController extends BaseController
 
     //添加二级分类
     public function create_two(){
-         $this->display();
+        $one = D("cates")->getone();
+        $this->assign('one',$one);
+        $this->display();
+    }
+
+    public function create_cates_two(){
+        $param['id'] =I('post.id');
+        $param['pid'] =I('post.pid');
+        $param['title'] =I('post.title');
+        if($param['id'] == '' || empty($param['id'])){
+              $result =  D('cates')->add_two($param);
+              $this->ajaxReturn($result);
+        }
+
+    }
+
+    public function edit_two(){
+        if(IS_GET){
+            $id= I('get.id');
+            $info = D('cates')->where(array('id'=>$id))->find();
+            $one = D("cates")->getone();
+            $this->assign('one',$one);
+            $this->assign('info',$info);
+            $this->display('create_two');
+        }else{
+            //todo 修改为完成
+        }
+    }
+
+    //删除二级
+    public function del_two(){
+        $param['id'] = I('get.id');
+        $result= D('cates')->del_two($param);
+        $this->ajaxReturn($result);
+
     }
 
 }
