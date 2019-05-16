@@ -29,38 +29,23 @@ class UserModel extends Model
     {
 
     	$model = M('user');
-
     	// 判断是否存在
     	$flag = $model->where(array('username' => $param['username'], 'is_deleted' => 0))->find();
-
         if ($flag) {
-
             return array(
                 'data' => $param['username'] . '已经存在了',
-
                 'msg' => $model->getLastSql(),
-
                 'status' => 0,
-
             );
-
         }
-
-
         $doAdd = false;
 
         $doAdd = $model->add(array(
-
             'username' => $param['username'],
-
             'password' => md5($param['password']),
-
             'status' => 1,
-
             'create_time' => date('Y-m-d H:i:s'),
-
         ));
-
         $res = $doAdd ? array('msg' => 'success') : array('msg' => 'failed');
 
         return array(
@@ -104,7 +89,7 @@ class UserModel extends Model
 
             ));
 
-        $res = array('msg' => 'success') ;
+        $res = $doMod ? array('msg' => 'success') : array('msg' => 'failed');
 
         return array(
             'data' => $res['msg'],
