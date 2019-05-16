@@ -73,22 +73,37 @@
                 var is_show = $('.tpl-switch-btn').is(":checked") ? 1 : 0;
 
                 if(!$('#password').val()){
-
                     alert('新密码不能为空')
-
-                    return false
-
+                    return false;
                 }
                 
                 var param = {
-
                      do : 'edit',
-
                      id : _page_id,
-
+                     username:$("#username").val(),
                      password : $('#password').val(),
+                }
+
+                if (!_page_id) {
+
+                    param = $.extend(param,{
+
+                        do : 'create'
+
+                    })
+
+                } else {
+
+                    param = $.extend(param,{
+
+                        do : 'edit',
+
+                        id : _page_id
+
+                    })
 
                 }
+
 
                 $.ajax({
 

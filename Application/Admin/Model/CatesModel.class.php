@@ -16,17 +16,14 @@ class CatesModel extends Model
     //顶级
     public function getone(){
         $model = M($this->table);
-        $list = $model->where(array('pid'=>0))->order('id desc ')->select();
+        $list = $model->where(array('pid'=>0))->order('id desc')->limit($limit)->select();
         return $list;
     }
 
     //添加一级
     public function Create($param)
     {
-
         $model = M($this->table);
-
-
         // 判断是否存在
         $flag = $model->where(array('cates_one' => $param['title']))->find();
         if ($flag) {
@@ -82,23 +79,18 @@ class CatesModel extends Model
     {
 
         $model = M($this->table);
-
         // 判断是否存在
         $flag = $model->where(array('cates_one' => $param['title'], 'id' => array('neq', $param['id'])))->find();
-
         if ($flag) {
             return array(
                 'data' => $param['title'] . '已经存在了',
                 'msg' => $model->getLastSql(),
                 'status' => 0,
             );
-
         }
         $doMod = false;
         $doMod = $model
-
             ->where(array('id' => $param['id']))
-
             ->save(array(
                 'cates_one' => $param['title'],
             ));

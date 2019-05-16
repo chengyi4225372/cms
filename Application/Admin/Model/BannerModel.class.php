@@ -35,6 +35,8 @@ class BannerModel extends Model
         $doAdd = $model->add(array(
             'url' => $param['url'],
             'img' => $param['img'],
+            'title'=>$param['title'],
+            'info'=>$param['info'],
         ));
         $res = $doAdd ? array('msg' => 'success') : array('msg' => 'failed');
         return array(
@@ -60,6 +62,8 @@ class BannerModel extends Model
             ->save(array(
                 'url' => $param['url'],
                 'img' => $param['img'],
+                'title'=>$param['title'],
+                'info'=>$param['info'],
             ));
 
         $res = $doMod ? array('msg' => 'success') : array('msg' => 'failed');
